@@ -22,10 +22,19 @@ public class LogInPage {
 	  WebElement errorMsg;
 	 WebDriver driver;
 	 public static String actualMsg;
+	
 	 
 	public LogInPage( WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
+	}
+	
+	public String verifyPagetitle() {
+		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+
+		String pageTitle = driver.getTitle();
+		return pageTitle;
+		
 	}
 
 	public void loginToSite(String validusername, String validpassword ) {

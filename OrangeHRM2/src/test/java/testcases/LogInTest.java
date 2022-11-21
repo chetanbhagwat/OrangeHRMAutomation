@@ -10,6 +10,11 @@ import pages.LogInPage;
 import utility.ExcelDataReader;
 
 public class LogInTest extends TestNGListeners {
+	@Test(priority=1)
+	public void verifyPageTitleTest() throws IOException {
+		Assert.assertEquals(lip.verifyPagetitle(), "OrangeHRM");
+		test.info("Title of page received :"+lip.verifyPagetitle());
+	}
 	@Test(priority=0)
 	public void validDataLogIn() throws IOException {
 		test.info("Entering Credentials");
@@ -19,12 +24,12 @@ public class LogInTest extends TestNGListeners {
 		+" "+ExcelDataReader.readData("Orange HRM2 data","Sheet1",2,1));
 	}
 	
-	@Test(priority=1)
+	@Test(priority=2)
 	public void logout() throws InterruptedException {
 		lip.logout();
 	}
 	
-	@Test(priority=2)
+	@Test(priority=3)
 	public void invalidUsernameLoginTest() throws IOException {
 		test.info("Entering Credentials");
 		lip.invalidUsernameLogin(ExcelDataReader.readData("Orange HRM2 data", "Sheet1", 3, 1), 
@@ -36,7 +41,7 @@ public class LogInTest extends TestNGListeners {
 		test.info("Error msg received :"+LogInPage.actualMsg);
 	}
 
-	@Test(priority=3)
+	@Test(priority=4)
 	public void invalidPasswordLogInTest() throws IOException {
 		test.info("Entering Credentials");
 		lip.invalidPasswordLogin(ExcelDataReader.readData("Orange HRM2 data", "Sheet1", 1, 1), 
@@ -48,7 +53,7 @@ public class LogInTest extends TestNGListeners {
 		test.info("Error msg received :"+LogInPage.actualMsg);
 	}
 	
-	@Test(priority=4)
+	@Test(priority=5)
 	public void invalidDataLogInTest() throws IOException {
 		test.info("Entering Credentials");
 		lip.invalidDataLogin(ExcelDataReader.readData("Orange HRM2 data", "Sheet1", 3, 1), 
