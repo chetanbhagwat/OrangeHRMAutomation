@@ -6,14 +6,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Test;
 
+
+import pages.DashboardPage;
 import pages.LogInPage;
 import utility.ExcelDataReader;
 
 public class BaseTest {
 	public static WebDriver driver;
 	public LogInPage lip;
+	public DashboardPage dbp;
 @BeforeSuite
 public void initBrowser() throws IOException
 {
@@ -25,5 +27,6 @@ public void initBrowser() throws IOException
 public void createObject()
 {
 	lip = new LogInPage(driver);
+	dbp = new DashboardPage(driver);
 }
 }

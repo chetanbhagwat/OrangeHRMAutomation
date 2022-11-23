@@ -115,7 +115,7 @@
 				
 				<configuration>
 					<suiteXmlFiles>
-						<suiteXmlFile>LogINtestng.xml</suiteXmlFile>
+						<suiteXmlFile>dashboard_pagetestng.xml</suiteXmlFile>
 					</suiteXmlFiles>
 				</configuration>
 				

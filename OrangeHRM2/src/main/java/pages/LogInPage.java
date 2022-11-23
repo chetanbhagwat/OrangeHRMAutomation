@@ -20,6 +20,7 @@ public class LogInPage {
 	  WebElement logout;
 	@FindBy(xpath="//p[@class='oxd-text oxd-text--p oxd-alert-content-text']")
 	  WebElement errorMsg;
+	
 	 WebDriver driver;
 	 public static String actualMsg;
 	
