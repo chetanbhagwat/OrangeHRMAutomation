@@ -9,6 +9,7 @@ import org.testng.annotations.BeforeSuite;
 
 
 import pages.DashboardPage;
+import pages.LeavePage;
 import pages.LogInPage;
 import utility.ExcelDataReader;
 
@@ -16,6 +17,7 @@ public class BaseTest {
 	public static WebDriver driver;
 	public LogInPage lip;
 	public DashboardPage dbp;
+	public LeavePage leavepage;
 @BeforeSuite
 public void initBrowser() throws IOException
 {
@@ -28,5 +30,6 @@ public void createObject()
 {
 	lip = new LogInPage(driver);
 	dbp = new DashboardPage(driver);
+	leavepage=new LeavePage(driver);
 }
 }
