@@ -46,5 +46,12 @@ public class LeavePageTest extends TestNGListeners{
 		test.info("Assign Leave is clickable");
 	}
 	
+	@Test(priority=4)
+	public void fillDataTest() throws InterruptedException {
+		
+		leavepage.fillData();
+		test.info("Data filled properly");
+	}
+	
 	
 }

@@ -2,8 +2,11 @@ package pages;
 
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -32,13 +35,26 @@ public class LeavePage {
 	@FindBy(xpath="//a[normalize-space()='Assign Leave']")
 	 WebElement assign_leave;
 	
-	@FindBy(xpath="//div[@class='oxd-grid-2 orangehrm-full-width-grid']//div[@class='oxd-grid-item oxd-grid-item--gutters']//div[@class='oxd-input-group oxd-input-field-bottom-space']//div//i[@class='oxd-icon bi-caret-down-fill oxd-select-text--arrow']")
+	@FindBy(xpath="//i[@class='oxd-icon bi-caret-down-fill oxd-select-text--arrow']")
 	WebElement leave_type_dropdown ;
-	@FindBy(xpath="//body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/form[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/input[1]")
+	@FindBy(xpath="//*[text()='CAN - Bereavement']")
+	WebElement leave_type;
+	@FindBy(xpath="(//input[@placeholder='yyyy-mm-dd'])[1]")
 	WebElement from_date;
-	@FindBy(xpath="//body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/form[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/i[1]")
+	@FindBy(xpath="//div[@class='oxd-form-row']//div[2]//div[1]//div[2]//div[1]//div[1]//input[1]")
 	WebElement to_date;
-	
+	@FindBy(xpath="//body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/form[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[2]/i[1]")
+	WebElement partial_days_dropdown;
+	@FindBy(xpath="//*[text()='All Days']")
+	WebElement days;
+	@FindBy(xpath="//body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/form[1]/div[3]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[2]/i[1]")
+	WebElement duration_dropdown;
+	@FindBy(xpath="//*[text()='Half Day - Morning']")
+	WebElement duration;
+	@FindBy(xpath="//textarea[@class='oxd-textarea oxd-textarea--active oxd-textarea--resize-vertical']")
+	WebElement comments;
+	@FindBy(xpath="//button[normalize-space()='Apply']")
+	WebElement apply_;
 	 WebDriver driver;
 		 
 	public LeavePage( WebDriver driver) {
@@ -88,10 +104,25 @@ public class LeavePage {
 	}
 	
 	//let us fill data in apply field
-	public void fillInfoToApply() {
+	public void fillData() throws InterruptedException {
 		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 		leave_type_dropdown.click();
-		from_date.click();
-		to_date.click();
+		Actions act = new Actions(driver);
+		act.moveToElement(leave_type).click().build().perform(); 
+		from_date.sendKeys("2022-11-20");
+		Thread.sleep(4000);
+		to_date.sendKeys(Keys.CONTROL + "a");
+		to_date.sendKeys(Keys.DELETE); 
+		Thread.sleep(4000);
+		to_date.sendKeys("2022-11-27");
+		Thread.sleep(4000);
+		
+		
+		act.moveToElement(partial_days_dropdown).click().build().perform();
+		act.moveToElement(days).click().build().perform();
+		duration_dropdown.click();
+		act.moveToElement(duration).click().build().perform();
+		comments.sendKeys("cgdyagfuhuf");
+		apply_.click();
 	}
 }
